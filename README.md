@@ -9,21 +9,4 @@ Repository where the practices developed in the course computational complexity 
 
 # Practices index
 
-* Coding schemes - prac1
-	- How to execute:
-		- Compile with javac
-		```bash
-		javac ReaderGraph.java
-		```
-		- Execute with java
-		```bash
-		java ReaderGraph examples/Example1.txt
-		```
-  		Output (so far):
-  		```bash
-		Number of Edges: 10
-		Value K: 5 
-		Number of Vertices: 6
-		```
-
-
+* [Coding schemes](https://github.com/Jose-MPM/Computational-Complexity/tree/main/p1)
