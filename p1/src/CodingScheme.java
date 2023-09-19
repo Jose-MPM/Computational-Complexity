@@ -6,9 +6,9 @@ import java.io.IOException;              /* Necessary to read/write files. */
 
 /**
  * Implements methods to transform graphs between coding schemes.
- *
- * @author neider
+ * @author Manjarrez Angeles Valeria Fernanda
  * @author Pedro Mendez Jose Manuel
+ * @author Sanchez Reza Neider
  * @version 17/09/2023
  */
 public class CodingScheme{
@@ -138,7 +138,5 @@ public class CodingScheme{
 	} catch (IOException ioe){
 	    System.out.println("Failed to write in the specified file. No changes were made.");
 	}
-	
     }
-
 }
