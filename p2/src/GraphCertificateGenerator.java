@@ -9,17 +9,22 @@ import java.io.FileNotFoundException;    /* Necessary to read/write files. */
 import java.io.IOException;              /* Necessary to read/write files. */
 
 /**
- * Implements methods to transform graphs between coding schemes.
+ * Implements methods to generate and understand a certificate.
+ * 
  * @author Manjarrez Angeles Valeria Fernanda
  * @author Pedro Mendez Jose Manuel
  * @author Sanchez Reza Neider
- * @version 17/09/2023
+ * @version 17/10/2023
  */
 public class GraphCertificateGenerator{
 
-
     /**
      * Manages the program execution.
+	 * 
+     * The main method takes two arguments
+	 * the input file path and the output file path. 
+	 * It then calls the certificateGenerator method to generate a certificate and 
+	 * the decodeCertificate method to decode the generated certificate.
      */
     public static void main(String[] args){
 		if (args.length != 2) {
@@ -74,11 +79,20 @@ public class GraphCertificateGenerator{
 			System.out.println("\n-------------------------------------------------------------");
 			System.out.println("Generating the certificate.");
 			System.out.println("-------------------------------------------------------------");
-            Set<Integer> selectedVertices = new HashSet<>();
+            Set<Integer> selectedIndices = new HashSet<>();
+			Set<Integer> selectedVertices = new HashSet<>();
             Random random = new Random();
-            while (selectedVertices.size() < kValue) {
-                selectedVertices.add(random.nextInt(nOfV) + 1);
-            }
+			
+			// to dont have a bucle
+			if (kValue <= nOfV){
+				while (selectedIndices.size() < kValue) {
+					int randomIndex = random.nextInt(v.length);
+					if (!selectedIndices.contains(randomIndex)) {
+						selectedIndices.add(randomIndex);
+						selectedVertices.add(v[randomIndex]);
+					}
+				}
+			}
 
             StringBuilder certificate = new StringBuilder();
             for (Integer vertex : selectedVertices) {
@@ -91,6 +105,7 @@ public class GraphCertificateGenerator{
             FileWriter fw = new FileWriter(out);
             fw.write(certificate.toString());
             fw.close();
+
 			System.out.println("Number of Vertices: "+nOfV);
 			System.out.println("Number of Edges: "+ numEdges);
 			System.out.println("Parameter K value: " + kValue);
@@ -104,6 +119,10 @@ public class GraphCertificateGenerator{
 
 	/**
 		 * Allows reading of a coded graph.
+		 * The decodeCertificate method reads a text-based coded 
+		 * representation of a certificate from a file, 
+		 * converts it into an array of integers
+		 * and returns the array.
 		 *
 		 * @param in  file path with the coded representation of a graph.
 		 */
