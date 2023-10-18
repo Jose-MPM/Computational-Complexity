@@ -5,32 +5,59 @@ Elaborado por:
 - Pedro Mendez Jose Manuel - 315073120
 - Sánchez Reza Neider - 317020931
 
-### Compilación
+## Compilación
 
-Para compilar el programa, simplemente se ejecuta `javac` en el archivo `CodingScheme.java`. Dentro del directorio `src/`, ejecutar:
-
-javac GraphCertificateGenerator.java
-
-* La clase GraphCertificateGenerator es la encargada de generar certificados a partir contiene dos funciones principales: certificateGenerator y decodeCertificate.
+Para compilar el programa, simplemente se ejecuta la instrucción `javac` sobre los archivos `.java` del paquete `induced_path`. Es decir, desde el directorio raíz del proyecto (donde se encuentra este archivo `Readme`), ejecutar:
     
-### Ejecución para generar un certificado.
+    cd src/
 
-Para ejecutar el programa, se usa la instrucción `java`. Es necesario indicar un archivo de entrada (con la gráfica codificada en texto) y un archivo de salida que representará nuestro certificado. Los archivos de entrada se encuentran dentro del directorio `examples/`.  
-
-Se sugiere utilizar el mismo directorio para guardar los archivos de salida, aunque no es estrictamente necesario (puede especificarse cualquier ruta para el archivo de salida). Dentro del directorio `src/`, ejecutar:
-
-    java GraphCertificateGenerator ./../examples/<example-n>.txt ./../examples/out_<example-n>.txt
-
-Ejemplo:
+    javac induced_path/*.java
     
-    java GraphCertificateGenerator ./../examples/example1.txt ./../examples/out_example1.txt
+## Ejecución 
+
+### Generación de certificados
+
+Para ejecutar el programa, se usa la instrucción `java`. Es necesario indicar un archivo de entrada (con la gráfica codificada en texto) y un archivo de salida que representará nuestro certificado. Los archivos de entrada se encuentran dentro del directorio `examples/graphs`.  
+
+Se sugiere utilizar el directorio `examples/certificates` para guardar los archivos de salida, aunque no es estrictamente necesario (puede especificarse cualquier ruta para el archivo de salida). Dentro del directorio `src/`, ejecutar:
+
+    java induced_path.GraphCertificateGenerator ./../examples/graphs/<exampleN>.txt ./../examples/certificates/<exampleN>_<certN>.txt
+    
 Donde:
-- El primer parámetro corresponde con la ruta del archivo de entrada que representa nuestro ejemplar. 
-- El segundo parámetro corresponde con la ruta del archivo de salida. Puede usarse cualquier ruta y cualquier archivo (si no existe, se crea). Se sugiere utilizar el mismo directorio `examples/` y utilizar un archivo con extensión `.txt`.
-- `<example-n>` se puede sustituir por el nombre de archivo de alguno de los archivos presentes en el directorio `examples/`. 
+* `<exampleN>` corresponde con el nombre del archivo de entrada.
+* `<exampleN>_<certN>` corresponde con el nombre del archivo de salida.
 
-### Salida para generar un certificado.
+Por ejemplo, al ejecutar la siguiente línea (desde el directorio `src/`)
+    
+    java induced_path.GraphCertificateGenerator ./../examples/graphs/example1.txt ./../examples/certificates/example1_cert1.txt
+    
+Produce el archivo `examples/certificates/example1_cert1.txt` cuya única línea corresponde con el certificado generado aleatoriamente para la gráfica codificada en el archivo `examples/graphs/example1.txt`
+
+#### Salida
 
 Una vez que se ha ejecutado el programa, se mostrará en pantalla dos secciones:
 1. La primera corresponde con la lectura del archivo de entrada. En esta, se especifica el número de aristas y el número de vértices encontrados en el archivo de entrada.
 2. La segunda corresponde con la escritura del certificado en el archivo de salida. Se indican el número de vértices, de aristas y el valor del parámetro `K`, el certificado generado, además de un mensaje que indica que el archivo se escribió adecuadamente.
+
+
+### Algoritmo de verificación
+De manera similar, el programa de verificación se ejecuta con la instrucción `java`. En este caso, es necesario especificar el archivo que contiene la codificación de la gráfica (codificación basada en texto) y el archivo que contiene el certificado. Como se usarán los mismos ejemplares y los certificados generados por el programa anterior, los archivos necesarios se encuentran en el directorio `examples/`.  
+Es decir, dentro del directorio `src/`, ejecutar:
+
+    java induced_path.ValidationAlgorithm ./../examples/graphs/<exampleN>.txt ./../examples/certificates/<exampleN>_<certN>.txt
+    
+Donde:
+* `<exampleN>` corresponde con el nombre del archivo de codificación de la gráfica.
+* `<exampleN>_<certN>` corresponde con el nombre del archivo de la codificación del certificado.
+
+Por ejemplo, al ejecutar la siguiente línea (desde el directorio `src/`) _luego de haber ejecutado el programa anterior_,
+
+    java induced_path.ValidationAlgorithm ./../examples/graphs/example1.txt ./../examples/certificates/example1_cert1.txt
+    
+Se muestra la salida del programa, descrita a continuación.
+
+#### Salida
+Una vez se ha ejecutado el programa, se muestran:
+1. La codificación en matriz de la gráfica leída.
+2. El valor del parámetro `K`.
+3. La respuesta de la verificación, es decir, si el certificado dado es solución al problema con la gráfica de entrada.

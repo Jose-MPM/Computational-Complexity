@@ -60,9 +60,11 @@ public class ValidationAlgorithm{
 		vertexes[i] = Integer.parseInt(vertexesStrings[i]);
 	    }
 
+	    System.out.println("Value of parameter K: " + vertexes.length);
+
 	    // VERIFICATION ALGORITHM
 	    boolean originVisited = false;
-	    for(int i = 0; i < vertexes.length; i++){
+	    for(int i = 0; i < vertexes.length - 1; i++){
 		originVisited = false;
 		int org = vertexes[i] - 1;
 		for(int j = i + 1; j < vertexes.length; j++){
@@ -74,6 +76,11 @@ public class ValidationAlgorithm{
 			}
 			else originVisited = true;
 		    }
+		} 
+		if(!originVisited){
+		    System.out.println("vertice: " + (org + 1));
+		    System.out.println("\n no hay adyacenciasThe given certificate " + certString + " is NOT a valid solution.");
+		    return;
 		}
 	    }
 	    System.out.println("\nThe certificate " + certString + " IS a valid solution.");

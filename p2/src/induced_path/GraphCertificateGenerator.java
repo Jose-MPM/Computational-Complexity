@@ -85,7 +85,7 @@ public class GraphCertificateGenerator{
 	    Set<Integer> selectedVertices = new HashSet<>();
             Random random = new Random();
 			
-	    // to dont have a bucle
+	    // Prevents generating a loop
 	    if (kValue <= nOfV){
 		while (selectedIndices.size() < kValue) {
 		    int randomIndex = random.nextInt(v.length);
