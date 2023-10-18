@@ -69,12 +69,17 @@ public class ValidationAlgorithm{
 		int org = vertexes[i] - 1;
 		for(int j = i + 1; j < vertexes.length; j++){
 		    int dest = vertexes[j] - 1;
-		    if(matrix[org][dest] == 1){
-			if(originVisited){
-			    System.out.println("\nThe given certificate " + certString + " is NOT a valid solution.");
-			    return;
+		    if(j == i + 1){
+			if(matrix[org][dest] == 1){
+			    if(originVisited){
+				System.out.println("\nThe given certificate " + certString + " is NOT a valid solution.");
+				return;
+			    }
+			    else originVisited = true;
 			}
-			else originVisited = true;
+		    } else if(matrix[org][dest] == 1){
+			System.out.println("\nThe given certificate " + certString + " is NOT a valid solution.");
+			return;
 		    }
 		} 
 		if(!originVisited){
