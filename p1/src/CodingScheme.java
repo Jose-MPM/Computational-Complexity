@@ -97,6 +97,11 @@ public class CodingScheme{
 	    String[] vertices = vertexList.split(",");
 	    int noVertex = Integer.parseInt(vertices[vertices.length - 1]);
 
+	    if(kVal >= noVertex){
+		System.out.println("K value not valid: K es greater than total vertices. No changes were made.");
+		return;
+	    }
+
 	    int[][] matrix = new int[noVertex][noVertex];
 
 	    // Building the matrix from the edges list.
@@ -127,7 +132,7 @@ public class CodingScheme{
 		}
 		fw.write(String.format("%n"));
 	    }
-	    fw.write("" + kVal);
+	    fw.write(Integer.toBinaryString(kVal));
 
 	    sc.close();
 	    fw.close();
