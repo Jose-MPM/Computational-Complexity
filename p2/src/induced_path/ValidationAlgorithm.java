@@ -78,8 +78,7 @@ public class ValidationAlgorithm{
 		    }
 		} 
 		if(!originVisited){
-		    System.out.println("vertice: " + (org + 1));
-		    System.out.println("\n no hay adyacenciasThe given certificate " + certString + " is NOT a valid solution.");
+		    System.out.println("\nThe given certificate " + certString + " is NOT a valid solution.");
 		    return;
 		}
 	    }
