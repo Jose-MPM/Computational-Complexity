@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;               /* Allows file writing. */
 import java.io.FileNotFoundException;    /* Necessary to read/write files. */
 import java.io.IOException;              /* Necessary to read/write files. */
+import java.util.LinkedHashSet;
 
 /**
  * Implements methods to generate and understand a certificate.
@@ -81,18 +82,16 @@ public class GraphCertificateGenerator{
 	    System.out.println("\n-------------------------------------------------------------");
 	    System.out.println("Generating the certificate.");
 	    System.out.println("-------------------------------------------------------------");
-            Set<Integer> selectedIndices = new HashSet<>();
-	    Set<Integer> selectedVertices = new HashSet<>();
+            //Set<Integer> selectedIndices = new HashSet<>();
+	    //Set<Integer> selectedVertices = new HashSet<>();
+	    Set<Integer> selectedVertices = new LinkedHashSet<>();
             Random random = new Random();
 			
 	    // Prevents generating a loop
 	    if (kValue <= nOfV){
-		while (selectedIndices.size() < kValue) {
+		while (selectedVertices.size() < kValue) {
 		    int randomIndex = random.nextInt(v.length);
-		    if (!selectedIndices.contains(randomIndex)) {
-			selectedIndices.add(randomIndex);
-			selectedVertices.add(v[randomIndex]);
-		    }
+		    selectedVertices.add(v[randomIndex]);
 		}
 	    }
 
