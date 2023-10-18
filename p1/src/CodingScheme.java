@@ -6,9 +6,9 @@ import java.io.IOException;              /* Necessary to read/write files. */
 
 /**
  * Implements methods to transform graphs between coding schemes.
- * @author Manjarrez Angeles Valeria Fernanda
+ *
+ * @author neider
  * @author Pedro Mendez Jose Manuel
- * @author Sanchez Reza Neider
  * @version 17/09/2023
  */
 public class CodingScheme{
@@ -83,7 +83,7 @@ public class CodingScheme{
 	try{
 	    File graph = new File(in);
 	    Scanner sc = new Scanner(graph);
-	    
+
 	    // Retrieving the K value.
 	    int kVal = sc.nextInt();
 
@@ -94,7 +94,8 @@ public class CodingScheme{
 	    }
 
 	    String vertexList = sc.next();
-	    int noVertex = Integer.parseInt(vertexList.substring(vertexList.length() - 1));
+	    String[] vertices = vertexList.split(",");
+	    int noVertex = Integer.parseInt(vertices[vertices.length - 1]);
 
 	    int[][] matrix = new int[noVertex][noVertex];
 
@@ -138,5 +139,7 @@ public class CodingScheme{
 	} catch (IOException ioe){
 	    System.out.println("Failed to write in the specified file. No changes were made.");
 	}
+	
     }
+
 }
